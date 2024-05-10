@@ -1,0 +1,75 @@
+body {
+  color: #40bf86;
+  font-family: monospace;
+  font-weight: bolder;
+  font-size: large;
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+   -khtml-user-select: none; /* Konqueror HTML */
+     -moz-user-select: none; /* Old versions of Firefox */
+      -ms-user-select: none; /* Internet Explorer/Edge */
+          user-select: none; /* Non-prefixed version, currently
+                                supported by Chrome, Edge, Opera and Firefox */
+}
+
+canvas {
+  top:0px;
+  left:0px;
+
+  width: 100%;
+  height: auto;
+
+  aspect-ratio: 1/1;
+}
+
+img {
+  visibility: hidden;
+}
+
+button {
+
+  margin-left: 10%;
+  margin-right: 10%;
+  width: 80%;
+
+
+  transform: translate(0%,0%);
+
+  padding: 4px;
+
+  border-radius: 16px;
+  border-width: 2px;
+  border-style: solid;
+  border-color: #40bf86;
+  
+  background-color: #00331c;
+  color: #40bf86;
+
+  transition: all 250ms;
+}
+
+
+
+button:hover {
+  padding: 2px;
+  border-color: #40bf9b;
+  
+  background-color: #003325;
+  color: #40bf9b;
+}
+
+.spriteDiv {
+  padding: 8px;
+  padding-top: 4px;
+  margin-right: 2px;
+  background-color: #3f3f3f;
+  transition: all 125ms;
+}
+
+.spriteDiv:hover {
+  background-color: #333333;
+}
+
+.spriteDiv:active {
+  background-color: #2f2f2f;
+}
