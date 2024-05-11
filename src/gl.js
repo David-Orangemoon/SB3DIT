@@ -34,7 +34,7 @@
     overideX = (overideX || block.x || 0) - SB3DIT.scroll[0];
     overideY = (overideY || block.y || 0) - SB3DIT.scroll[1];
 
-    gl.filter = `hue-rotate(${SB3DIT.blockColors[block.opcode.split("_")[0]] || SB3DIT.blockColors.sb3ditUnknownBlocks}deg)`;
+    gl.filter = (typeof SB3DIT.blockColors[block.opcode.split("_")[0]] == "object") ? `hue-rotate(${SB3DIT.blockColors[block.opcode.split("_")[0]][0]}deg) saturate(${SB3DIT.blockColors[block.opcode.split("_")[0]][1]}%)` : `hue-rotate(${SB3DIT.blockColors[block.opcode.split("_")[0]] !== undefined ? SB3DIT.blockColors[block.opcode.split("_")[0]] : SB3DIT.blockColors.sb3ditUnknownBlocks}deg)`;
 
     let image = SB3DIT.blockImages[`${block.shadow || parentShadowed ? "shadow_" : ""}block`];
     let offset = 0;
