@@ -43,4 +43,54 @@
       });
     }
   }
+
+  SB3DIT.editAndSaveAsPMP = () => {
+    if (SB3DIT.projectLoaded) {
+      const parsing = JSON.parse(JSON.stringify(SB3DIT.projectJSON));
+
+      parsing.targets.forEach(target => {
+        Object.keys(target.blocks).forEach(blockID => {
+          switch (target.blocks[blockID].opcode) {
+            case "procedures_call":
+              if (!target.blocks[blockID].mutation.return) break;
+              switch (target.blocks[blockID].mutation.return) {
+                case "1":
+                  target.blocks[blockID].mutation.optype = "\"string\"";
+                  target.blocks[blockID].mutation.returns = "true";
+                  break;
+
+                case "2":
+                  target.blocks[blockID].mutation.optype = "\"boolean\"";
+                  target.blocks[blockID].mutation.returns = "true";
+                  break;
+              
+                default:
+                  break;
+              }
+              console.log(target.blocks[blockID].mutation.optype)
+              break;
+          
+            case "procedures_return":
+              if (target.blocks[blockID].inputs) {
+                if (target.blocks[blockID].inputs.VALUE) {
+                  target.blocks[blockID].inputs.return = target.blocks[blockID].inputs.VALUE;
+                  delete target.blocks[blockID].inputs.VALUE
+                } 
+              }
+              console.log(target.blocks[blockID].inputs.return)
+              break;
+
+            default:
+              break;
+          }
+        });
+      });
+
+      SB3DIT.project.file("project.json",JSON.stringify(parsing));
+      SB3DIT.project.generateAsync({type:"blob"})
+      .then(function (blob) {
+          saveAs(blob, SB3DIT.projectName + ".pmp");
+      });
+    }
+  }
 })();
